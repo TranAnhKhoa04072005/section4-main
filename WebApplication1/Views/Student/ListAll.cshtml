@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApplication1.Models.Student>// khai bao model kieu du lieu
+<h1>Thông tin sinh viên lớp K20</h1>
+<table class="table">
+    <tr>
+        <th>STT</th>
+        <th>Tên</th>
+        <th>Tuổi</th>
+        <th>Giới tính</th>
+        <th>Hình ảnh</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+           <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.age</td>
+            @if(item.gender == true)
+            {
+                <td>Nam</td>
+            }
+            else
+            {
+                <td>Nữ</td>
+            }
+            <td><img src="@item.ImgUrl" height="100" /></td>
+        <td>@Html.ActionLink("Detail","ListOnlyStudent",new{id=item.Id})</td>
+        <td>@Html.ActionLink("Edit","EditStudent",new{id=item.Id})</td>
+        <td>@Html.ActionLink("Delete","DelStudent",new{id=item.Id})</td>
+        </tr>
+    }
+</table>
+<td>@Html.ActionLink("Add","AddStudent")</td>
